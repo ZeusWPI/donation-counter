@@ -1,0 +1,118 @@
+html, body {
+    height: 100%;
+    width:100%;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: #273654;
+}
+
+body {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url(../../static/images/background.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-color: #D1E5E5;
+    /*background-image: linear-gradient(-45deg, #95CB38, #85C712);*/
+}
+
+.container{
+    width: 60%;
+    padding-bottom: 28%;
+}
+
+h1 {
+    font-size: 2.875rem;
+    font-weight: bold;
+    text-shadow: 0px 2px 3px #27375534;
+}
+
+h2 {
+    line-height: 0;
+    font-size: 4.625rem;
+    font-weight: 200;
+    text-shadow: 0px 2px 3px #2737552d;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 1.5rem;
+    background-color: #E9FEFF;
+    box-shadow: 0px 2px 5px #27375548;
+}
+.progress-bar__progress {
+    width: 10%;
+    height: 1.5rem;
+    background-color: #273554;
+}
+
+aside {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    background-color: white;
+    padding: 0 2rem;
+    font-weight: bold;
+}
+
+span {
+    color: #FD7C05;
+}
+
+.cloud {
+    max-width: 13rem;
+    position: absolute;
+    z-index: -1;
+    opacity: 0.5;
+}
+
+#cloud-1 {
+    top: 11%;
+    right: 40%;
+    animation: float-1 30s -24s ease-in-out infinite;
+}
+
+#cloud-2 {
+    top: 17%;
+    right: 20%;
+    animation: float-2 30s -16s ease-in-out infinite;
+}
+
+#cloud-3 {
+    top: 51%;
+    right: 60%;
+    animation: float-3 30s -8s ease-in-out infinite;
+}
+
+#cloud-4 {
+    top: 32%;
+    right: 80%;
+    animation: float-4 30s ease-in-out infinite;
+}
+
+
+@keyframes float-1 {
+    0% { transform:translatex(0) }
+    50% { transform:translatex(10rem) }
+    100%{ transform:translatex(0) }
+}
+
+@keyframes float-2 {
+    0% { transform:translatex(0) }
+    50% { transform:translatex(12rem) }
+    100%{ transform:translatex(0) }
+}
+
+@keyframes float-3 {
+    0% { transform:translatex(0) }
+    50% { transform:translatex(14rem) }
+    100%{ transform:translatex(0) }
+}
+
+@keyframes float-4 {
+    0% { transform:translatex(0) }
+    50% { transform:translatex(16rem) }
+    100%{ transform:translatex(0) }
+}
