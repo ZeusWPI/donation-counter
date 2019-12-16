@@ -30,6 +30,13 @@ def checkTabBalance():
             print("updating balance...")
             amount = r.json()["balance"]
 
+        transactions = get(
+            "https://tab.zeus.gent/users/teamtrees_donations/transactions",
+            headers=headers)
+        noticable_transactions = filter(lambda x: x['amount'] >= 200,
+                                        transactions.json())
+        print(noticable_transactions)
+
 
 @app.before_first_request
 def initialize():
