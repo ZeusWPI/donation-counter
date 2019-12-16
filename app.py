@@ -9,10 +9,11 @@ import sys
 app = Flask(__name__)
 limiter = Limiter(app,
                   key_func=get_remote_address,
-                  default_limits=["1 per second"])
+                  default_limits=["3 per second"])
 
 tab_token = os.environ['TAB_TOKEN']
 amount = 0
+amount_of_noticable_transactions = 0
 
 
 def checkTabBalance():
@@ -27,15 +28,16 @@ def checkTabBalance():
             print("Wrong tab request, are you using the correct tab token?")
         else:
             global amount
+            global amount_of_noticable_transactions
             print("updating balance...")
             amount = r.json()["balance"]
 
-        transactions = get(
-            "https://tab.zeus.gent/users/teamtrees_donations/transactions",
-            headers=headers)
-        noticable_transactions = filter(lambda x: x['amount'] >= 200,
-                                        transactions.json())
-        print(noticable_transactions)
+            transactions = get(
+                "https://tab.zeus.gent/users/teamtrees_donations/transactions",
+                headers=headers)
+            amount_of_noticable_transactions = len(
+                list(filter(lambda x: x['amount'] >= 200,
+                            transactions.json())))
 
 
 @app.before_first_request
@@ -53,7 +55,7 @@ def home():
 @app.route("/amount")
 def get_amount():
     global amount
-    return str(amount)
+    return {"amount": amount, "count": amount_of_noticable_transactions}
 
 
 if __name__ == "__main__":
