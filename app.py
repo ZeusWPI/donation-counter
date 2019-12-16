@@ -23,9 +23,12 @@ def checkTabBalance():
         }
         r = get("https://tab.zeus.gent/users/teamtrees_donations",
                 headers=headers)
-        global amount
-        print("updating balance...")
-        amount = r.json()["balance"]
+        if r.status_code == 406:
+            print("Wrong tab request, are you using the correct tab token?")
+        else:
+            global amount
+            print("updating balance...")
+            amount = r.json()["balance"]
 
 
 @app.before_first_request
