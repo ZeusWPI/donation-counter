@@ -101,9 +101,12 @@ span {
 }
 
 .donation {
+    padding: 0.5rem 0;
     display: flex;
     width: 25rem;
+    border-top: 1px solid #2735543f;
 }
+
 
 .donation__image {
     padding: 0 1rem;

@@ -43,31 +43,37 @@
                     $("#amount").text(`€ ${amount/100}`);
 
                     let transactions = data['latest_transactions'];
-                    koelkast(transaction);
+                    createDonations(transactions);
                 });
                 await sleep(2000);
             }
         }
 
         const createDonation = donation => {
-            console.log(donation);
+            badge="{{ url_for('static', filename='images/badge-1.svg') }}";
+            if(donation['amount'] >= 2000){
+                badge="{{ url_for('static', filename='images/badge-4.svg') }}"
+            }else if(donation['amount'] >= 1000){
+                badge="{{ url_for('static', filename='images/badge-3.svg') }}"
+            }else if(donation['amount'] >= 500){
+                badge="{{ url_for('static', filename='images/badge-2.svg') }}"
+            }
             const donation_section = document.createElement("section");
             donation_section.classList.add("donation")
-            donation_section.innerHTML = `<img class="donation__image" src="{{ url_for('static', filename='images/badge-2.svg') }}" alt="" width="70px">
+            donation_section.innerHTML = `<img class="donation__image" src=`+badge+` alt="" width="70px">
                 <article>
-                    <h3>Arnhoudt $5.65</h3>
-                    <p>PHP good, Lorem ipsum dolor sit amet, lorem ipsum dolor sit amet, lorem ipsum dolor sit amet, lorem ipsum dolor sit amet</p>
+                    <h3>`+donation['debtor']+` $`+donation['amount']/100+`</h3>
+                    <p>`+donation['message']+`</p>
                 </article>'`
             document.querySelector('.donations').appendChild(donation_section);
         }
 
         const createDonations = donations => {
+            document.querySelector('.donations').innerHTML='';
             donations.forEach(donation => {
                 createDonation(donation);
             });
-            console.log("werkt")
         };
-        createDonations([["naam", "$0", "php good"],["naam", "$0", "php good"],["naam", "$0", "php good"],["naam", "$0", "php good"]]);
 
         load_amount();
     </script>
