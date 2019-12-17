@@ -21,6 +21,7 @@
         </article>
     </section>
 
+
     <aside>
         <p>made with <3 by <span>zeus</span></p>
     </aside>
@@ -38,9 +39,11 @@
                     url: "/amount",
                     context: document.body
                 }).done(function(data) {
-                    console.log(data)
-                    $("#amount").text(`€ ${data['amount']/100}`);
-                    $("#count").text(`${data['count']}`);
+                    let amount = data['amount']
+                    $("#amount").text(`€ ${amount/100}`);
+
+                    let transactions = data['latest_transactions'];
+                    koelkast(transaction);
                 });
                 await sleep(2000);
             }
