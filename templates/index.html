@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,20 +7,19 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <title>Teamtrees</title>
 </head>
-
 <body>
+    <div class="background"></div>
+    <img class="yasminos" src="{{ url_for('static', filename='images/yasminos.svg') }}" alt="">
     <img class="cloud" id="cloud-1" src="{{ url_for('static', filename='images/cloud.svg') }}">
     <img class="cloud" id="cloud-2" src="{{ url_for('static', filename='images/cloud-translucent.svg') }}">
     <img class="cloud" id="cloud-3" src="{{ url_for('static', filename='images/cloud.svg') }}">
     <img class="cloud" id="cloud-4" src="{{ url_for('static', filename='images/cloud-translucent.svg') }}">
-    <article class="container">
+    <section class="container">
         <h1>TeamTrees donations</h1>
-        <h2>Total: <span id="amount">€ 5.85</span></h2>
-        <h2 style="padding-top:40px;padding-left:20px;">Count: <span id="count"></span></h2>
-        <!-- <div class="progress-bar"> -->
-        <!-- <div class="progress-bar__progress"></div> -->
-        <!-- </div> -->
-    </article>
+        <h2><span id="amount">€ 5.85</span></h2>
+        <article class="donations">
+        </article>
+    </section>
 
     <aside>
         <p>made with <3 by <span>zeus</span></p>
@@ -47,9 +45,30 @@
                 await sleep(2000);
             }
         }
+
+        const createDonation = donation => {
+            console.log(donation);
+            const donation_section = document.createElement("section");
+            donation_section.classList.add("donation")
+            donation_section.innerHTML = `<img class="donation__image" src="{{ url_for('static', filename='images/badge-2.svg') }}" alt="" width="70px">
+                <article>
+                    <h3>Arnhoudt $5.65</h3>
+                    <p>PHP good, Lorem ipsum dolor sit amet, lorem ipsum dolor sit amet, lorem ipsum dolor sit amet, lorem ipsum dolor sit amet</p>
+                </article>'`
+            document.querySelector('.donations').appendChild(donation_section);
+        }
+
+        const createDonations = donations => {
+            donations.forEach(donation => {
+                createDonation(donation);
+            });
+            console.log("werkt")
+        };
+        createDonations([["naam", "$0", "php good"],["naam", "$0", "php good"],["naam", "$0", "php good"],["naam", "$0", "php good"]]);
+
         load_amount();
     </script>
 
-</body>
 
+</body>
 </html>
