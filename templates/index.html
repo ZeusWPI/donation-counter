@@ -15,9 +15,9 @@
     <img class="cloud" id="cloud-3" src="{{ url_for('static', filename='images/cloud.svg') }}">
     <img class="cloud" id="cloud-4" src="{{ url_for('static', filename='images/cloud-translucent.svg') }}">
     <article class="container">
-        <h1>TeamTrees donations</h1>
-        <h2>Total: <span id="amount">€ 5.85</span></h2>
-        <h2 style="padding-top:40px;padding-left:20px;">Count: <span id="count"></span></h2>
+        <h1>TeamTreessss donations</h1>
+        <h2>Total : <span id="amount">€ 5.85</span></h2>
+        <h2 style="padding-top:20px;">Count (>2€): <span id="count"></span></h2>
         <!-- <div class="progress-bar"> -->
         <!-- <div class="progress-bar__progress"></div> -->
         <!-- </div> -->
@@ -40,9 +40,11 @@
                     url: "/amount",
                     context: document.body
                 }).done(function(data) {
-                    console.log(data)
-                    $("#amount").text(`€ ${data['amount']/100}`);
-                    $("#count").text(`${data['count']}`);
+                    let amount = data['amount']
+                    $("#amount").text(`€ ${amount/100}`);
+
+                    let transactions = data['latest_transactions'];
+                    koelkast(transaction);
                 });
                 await sleep(2000);
             }
