@@ -13,3 +13,5 @@ source env/bin/activate
 ```
 
 Now install the dependencies with `poetry install`.
+
+Start the server using the Makefile -> `make`
