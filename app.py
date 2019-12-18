@@ -11,7 +11,7 @@ limiter = Limiter(app,
                   key_func=get_remote_address,
                   default_limits=["3 per second"])
 
-user = os.getenv("USER", 'teamtrees_donations')
+user = os.getenv("TAB_USER", 'teamtrees_donations')
 tab_token = os.environ['TAB_TOKEN']
 
 amount = 0
@@ -44,7 +44,7 @@ def checkTabBalance():
                 reversed(
                     list(
                         filter(lambda x: x['amount'] >= 200,
-                               transactions.json()))))[:4]
+                               transactions.json()))))[:6]
             # print(latest_transactions)
 
 

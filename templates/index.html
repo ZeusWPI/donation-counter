@@ -62,7 +62,7 @@
             donation_section.classList.add("donation")
             donation_section.innerHTML = `<img class="donation__image" src=`+badge+` alt="" width="70px">
                 <article>
-                    <h3>`+donation['debtor']+` $`+donation['amount']/100+`</h3>
+		    <h3> €`+donation['amount']/100+`</h3>
                     <p>`+donation['message']+`</p>
                 </article>'`
             document.querySelector('.donations').appendChild(donation_section);
